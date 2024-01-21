@@ -1,13 +1,48 @@
 .sidebar {
-    height: 80vh;
-    width: 25%;
-    min-width: 200px;
-    padding: 2rem;
-    margin: 4rem;
-    position: absolute;
-    z-index: 1000;
-    top: 0;
-    left: 0;
-    background-color: rgba(9, 147, 221, 0.8);
-    border-radius: 10px;
+  padding: 2rem;
+  max-width: 300px;
+  margin: 4rem;
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  background-color: var(--primary-color);
+  border-radius: 10px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  .sidebar__inside {
+    .sidebar__inside__hamburger {
+      button {
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        font-size: 2rem;
+        color: #000;
+        &:hover {
+          color: #fff;
+        }
+      }
+    }
+    .sidebar__inside__content {
+      h2 {
+        margin: 2rem 0;
+      }
+      p {
+        line-height: 1.5;
+        text-align: justify;
+        a {
+          color: #fff;
+          text-decoration: none;
+          &:hover {
+            color: #808080;
+          }
+        }
+      }
+    }
+  }
+}
+
+.collapsed {
+  display: none;
+  width: 0;
+  height: 0;
 }

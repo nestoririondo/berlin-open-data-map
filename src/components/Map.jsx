@@ -18,14 +18,14 @@ L.Icon.Default.mergeOptions({
   shadowUrl,
 });
 
-const berlin = [52.520008, 13.404954];
+const berlin = [52.5, 13.35];
 const geocodingKey = import.meta.env.VITE_GEOCODING_API_KEY;
 
 const fetchData = async (setData, setIsLoading) => {
   try {
     const response = await axios.get(VERSCHENKEN_API);
     const promises = response.data.index.map((item) =>
-      axios.get(`${GEOCODING_API}${item.adresse}&key=${geocodingKey}`)
+      axios.get(`${GEOCODING_API}${item.adresse} ${item.plz}&key=${geocodingKey}`)
     );
     const results = await Promise.all(promises);
     const dataWithCoordinates = results.map((result, index) => ({
@@ -72,9 +72,9 @@ const Map = () => {
               >
                 <Popup>
                   <div className="name">{item.name}</div>
-                  <div className="address">{item.adresse}</div>
+                  <div className="address">{item.adresse}, {item.plz} {item.bezirk}</div>
                   <div className="things">{item.gueter}</div>
-                  <div>{item.anschrift}</div>
+                  {/* <div>{item.anschrift}</div> */}
                 </Popup>
               </Marker>
             );
