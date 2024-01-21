@@ -1,0 +1,2 @@
+export const VERSCHENKEN_API = 'https://www.berlin.de/umwelt/themen/abfall/verschenken-statt-wegwerfen/index.php/index/all.json?ipp=100';
+export const GEOCODING_API = 'https://maps.googleapis.com/maps/api/geocode/json?address='

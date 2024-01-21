@@ -1,0 +1,13 @@
+.sidebar {
+    height: 80vh;
+    width: 25%;
+    min-width: 200px;
+    padding: 2rem;
+    margin: 4rem;
+    position: absolute;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    background-color: rgba(9, 147, 221, 0.8);
+    border-radius: 10px;
+}
