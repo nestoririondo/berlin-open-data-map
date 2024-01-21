@@ -1,6 +1,6 @@
 import "./SideBar.css";
 
-const SideBar = ({isLoading}) => {
+const SideBar = ({ isLoading }) => {
   return (
     <div className="sidebar">
       {isLoading && <h2>Loading...</h2>}
@@ -13,7 +13,7 @@ const SideBar = ({isLoading}) => {
             data is currently fetched from the{" "}
             <a href="https://daten.berlin.de/datensaetze/verschenken-statt-wegwerfen">
               Verschenken statt Wegwerfen database
-            </a>
+            </a>{" "}
             and the locations are geocoded using the Google Geocoding API. More
             data sources will be added in the future.
           </p>
