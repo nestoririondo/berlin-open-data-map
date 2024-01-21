@@ -7,6 +7,16 @@ import axios from "axios";
 import "./Map.css";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
+import iconRetinaUrl from "leaflet/dist/images/marker-icon-2x.png";
+import iconUrl from "leaflet/dist/images/marker-icon.png";
+import shadowUrl from "leaflet/dist/images/marker-shadow.png";
+delete L.Icon.Default.prototype._getIconUrl;
+
+L.Icon.Default.mergeOptions({
+  iconRetinaUrl,
+  iconUrl,
+  shadowUrl,
+});
 
 const berlin = [52.520008, 13.404954];
 const geocodingKey = import.meta.env.VITE_GEOCODING_API_KEY;
@@ -41,7 +51,7 @@ const Map = () => {
 
   return (
     <div className="map">
-      <SideBar />
+      <SideBar isLoading={isLoading}/>
       <MapContainer center={berlin} zoom={12} scrollWheelZoom={true}>
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
