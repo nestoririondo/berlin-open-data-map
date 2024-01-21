@@ -6,7 +6,7 @@ const SideBar = () => {
       <h2>Berlin Open Data Map</h2>
       <p>
         This is a map of free stuff in Berlin. The data is fetched from the
-        Berlin Open Data portal.</p>
+        Berlin Open Data portal and .</p>
     </div>
   );
 };

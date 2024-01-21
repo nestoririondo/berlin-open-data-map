@@ -50,7 +50,7 @@ const Map = () => {
         {data &&
           data.map((item, index) => {
             const markerIcon = L.icon({
-              iconUrl: "../src/assets/marker.png",
+              iconUrl: "../../public/assets/marker.png",
               iconSize: [30, 30],
             });
             console.log(item);
