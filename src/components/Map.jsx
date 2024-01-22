@@ -33,8 +33,10 @@ const fetchData = async (setData, setIsLoading) => {
     const dataWithCoordinates = results.map((result, index) => {
       const item = response.data.index[index];
       const location = result.data.results[0];
-      const lat = location && location.geometry ? location.geometry.location.lat : null;
-      const lng = location && location.geometry ? location.geometry.location.lng : null;
+      const lat =
+        location && location.geometry ? location.geometry.location.lat : null;
+      const lng =
+        location && location.geometry ? location.geometry.location.lng : null;
       return { ...item, lat, lng };
     });
     setData(dataWithCoordinates);
@@ -63,11 +65,13 @@ const Map = () => {
         />
         {data &&
           data.map((item, index) => {
+            if (!item || item.lat === null || item.lng === null) {
+              return console.log("no coordinates for item", item);
+            }
             const markerIcon = L.icon({
               iconUrl: "./assets/marker.png",
               iconSize: [30, 30],
             });
-            console.log(item);
             return (
               <Marker
                 key={index}
