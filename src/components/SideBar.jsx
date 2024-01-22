@@ -13,7 +13,7 @@ const SideBar = ({ isLoading }) => {
         <div className="sidebar__inside">
           <div className="sidebar__inside__hamburger">
             <button
-              class="nav-toggle"
+              className="nav-toggle"
               aria-expanded="false"
               aria-controls="menu"
               onClick={handleCollapse}
