@@ -25,14 +25,18 @@ const fetchData = async (setData, setIsLoading) => {
   try {
     const response = await axios.get(VERSCHENKEN_API);
     const promises = response.data.index.map((item) =>
-      axios.get(`${GEOCODING_API}${item.adresse} ${item.plz}&key=${geocodingKey}`)
+      axios.get(
+        `${GEOCODING_API}${item.adresse} ${item.plz}&key=${geocodingKey}`
+      )
     );
     const results = await Promise.all(promises);
-    const dataWithCoordinates = results.map((result, index) => ({
-      ...response.data.index[index],
-      lat: result.data.results[0].geometry.location.lat,
-      lng: result.data.results[0].geometry.location.lng,
-    }));
+    const dataWithCoordinates = results.map((result, index) => {
+      const item = response.data.index[index];
+      const location = result.data.results[0];
+      const lat = location && location.geometry ? location.geometry.location.lat : null;
+      const lng = location && location.geometry ? location.geometry.location.lng : null;
+      return { ...item, lat, lng };
+    });
     setData(dataWithCoordinates);
   } catch (error) {
     console.log(error);
@@ -51,7 +55,7 @@ const Map = () => {
 
   return (
     <div className="map">
-      <SideBar isLoading={isLoading}/>
+      <SideBar isLoading={isLoading} />
       <MapContainer center={berlin} zoom={12} scrollWheelZoom={true}>
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -72,7 +76,9 @@ const Map = () => {
               >
                 <Popup>
                   <div className="name">{item.name}</div>
-                  <div className="address">{item.adresse}, {item.plz} {item.bezirk}</div>
+                  <div className="address">
+                    {item.adresse}, {item.plz} {item.bezirk}
+                  </div>
                   <div className="things">{item.gueter}</div>
                   {/* <div>{item.anschrift}</div> */}
                 </Popup>
